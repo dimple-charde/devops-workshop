@@ -1,8 +1,9 @@
 provider "aws" {
   region = "us-east-1"
-  access_key = "AKIAUQHRK7M734ERNF7B"
-  secret_key = "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"
+  access_key = "AKIAUQHRK7M7TBDJULAB"
+  secret_key = "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"
 }
+
 
 resource "aws_instance" "demo-server" {
     ami = "ami-053b0d53c279acc90"
@@ -10,8 +11,8 @@ resource "aws_instance" "demo-server" {
     key_name = "Devops_project_key"
     //security_groups = [ "demo-sg" ]
     vpc_security_group_ids = [aws_security_group.demo-sg.id]
-    subnet_id = aws_subnet.dpp-public_subnet_01.id
-   for_each = toset(["jenkins-master", "build-slave", "ansible"])
+    subnet_id = aws_subnet.dpp-public-subnet-01.id 
+for_each = toset(["jenkins-master", "build-slave", "ansible"])
    tags = {
      Name = "${each.key}"
    }
